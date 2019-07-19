@@ -3,13 +3,21 @@
 use POSIX ":sys_wait_h";
 
 my @demos = (
-             ['loader.sna -load-immed intro.tap', 60],
-             ['manic.sna',110],
-             ['backtoskool.sna',110],
-             ['thegreatescape.sna',60],
-             ['chequeredflag.sna',60],
-             ['madmix.sna',60],
-             ['rocknroller.sna',100],
+             ['root','spectrum.png', 4],
+             ['emul','loader.sna -load-immed intro.tap', 60, 4],
+             ['img','teaser1.png', 4],
+             ['emul','manic.sna',30, 4],
+             ['img','teaser2.png', 4],
+             ['emul','backtoskool.sna',30, 4],
+             ['img','teaser3.png', 4],
+             ['emul','thegreatescape.sna',20, 4],
+             ['img','teaser4.png', 4],
+             ['root','spectrum3.png', 4],
+             ['emul','chequeredflag.sna',20, 4],
+             ['img','teaser2.png', 4],
+             ['emul','madmix.sna',20, 4],
+             ['img','teaser4.png', 4],
+             ['emul','rocknroller.sna',100, 4],
             );
 
 
@@ -49,9 +57,22 @@ system("/usr/bin/xli dispgamma 1.0 -fit -fillscreen -onroot spectrum.png");
 
 while (1) {
     foreach my $d (@demos) {
-
-        runfor("./xspect -scale -1 ".$d->[0], $d->[1]);
-        sleep 4;
+        my $dcmd = $d->[0];
+        if ($dcmd eq 'emul') {
+            runfor("./xspect -scale -1 ".$d->[1], $d->[2]);
+            if (defined d->[3]) {
+                sleep $d->[3];
+            }
+        } else if ($dcmd eq 'root') {
+            my $file = $d->[1];
+            system("/usr/bin/xli -dispgamma 1.0 -fit -fillscreen -onroot ${file}");
+            sleep $d->[2];
+        else if ($dcmd eq 'img') {
+            my $file = $d->[1];
+            runfor("/usr/bin/xli -dispgamma 1.0 -fit -fillscreen ${file}", $d->[2]);
+        } else {
+            sleep 1;
+        }
     }
 }
 #
