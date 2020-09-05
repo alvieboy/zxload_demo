@@ -11,6 +11,7 @@
 
 extern "C" unsigned char *mem;
 extern "C" void init_pallete();
+extern "C" void init_pallete_reversed();
 extern "C" void init_emul();
 
 
