@@ -3,6 +3,6 @@ QT += widgets network
 
 INCLUDEPATH=.. ../QtSpecem
 SOURCES=gui.cpp
-HEADERS=LogEmitter.h
+HEADERS=
 
 LIBS+=-L.. -L../QtSpecem -lQtSpecem
