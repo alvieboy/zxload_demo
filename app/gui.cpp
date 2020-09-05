@@ -44,7 +44,7 @@ static int setupgui()
     QFile file(filename);
 
     printf("Init pallete\n");
-    init_pallete();
+    init_pallete_reversed();
     
     printf("Init emul\n");
     init_emul();
