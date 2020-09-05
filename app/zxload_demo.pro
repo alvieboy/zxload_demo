@@ -6,3 +6,5 @@ SOURCES=gui.cpp
 HEADERS=
 
 LIBS+=-L.. -L../QtSpecem -lQtSpecem
+
+RESOURCES=zxload_demo.qrc
