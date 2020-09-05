@@ -65,6 +65,7 @@ static int setupgui()
     }
 
     spectrumWidget->show();
+    spectrumWidget->loadSNA("demo.sna");
     return 0;
 }
 
