@@ -38,7 +38,7 @@ static int setupgui()
 
     QString filename;
 
-    filename = ":/rom/spectrum.rom";
+    filename = "rom/spectrum.rom";
 
     printf("Using rom %s\n", filename.toLatin1().constData());
     QFile file(filename);
