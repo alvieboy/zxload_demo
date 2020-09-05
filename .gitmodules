@@ -1,0 +1,4 @@
+[submodule "QtSpecem"]
+	path = QtSpecem
+	url = git@github.com:alvieboy/QtSpecem.git
+	branch = interfacez
