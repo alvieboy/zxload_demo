@@ -2,3 +2,6 @@
 	path = QtSpecem
 	url = git@github.com:alvieboy/QtSpecem.git
 	branch = interfacez
+[submodule "QtZeroConf"]
+	path = QtZeroConf
+	url = https://github.com/jbagg/QtZeroConf.git
