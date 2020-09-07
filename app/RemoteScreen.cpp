@@ -1,6 +1,7 @@
 #include "RemoteScreen.h"
 #include <QDebug>
 #include <QPainter>
+#include <QNetworkDatagram>
 
 struct frame {
     uint8_t seq:7;
@@ -19,6 +20,7 @@ RemoteScreen::RemoteScreen(): targetimage(160,128,QImage::Format_RGB32)
     timer.setSingleShot(true);
 
     stream_socket.bind();
+    //stream_socket.open(QIODevice::ReadWrite);
     QObject::connect(&stream_socket, &QIODevice::readyRead, this, &RemoteScreen::UdpDataAvailable);
     flashinvert = false;
     targetimage.fill(0x0);
@@ -65,7 +67,7 @@ void RemoteScreen::enterState(enum RemoteScreen::state st)
     switch(state) {
     case STATE_SERVICE_DISCOVERY:
         qDebug()<<"Starting service discovery";
-        zeroconf.startBrowser("_smb._tcp");
+        zeroconf.startBrowser("_zxictrl._tcp");
         //zeroconf.startBrowser("_zxictrl._tcp");
         timer.start(30000);
         break;
@@ -108,8 +110,10 @@ void RemoteScreen::timerExpired()
         break;
     case STATE_STREAM:
         qDebug()<<"Lost data";
-        isconnected = false;
-        emit connectionLost();
+        if (isconnected) {
+            isconnected = false;
+            emit connectionLost();
+        }
         enterState(STATE_SERVICE_DISCOVERY);
         break;
     default:
@@ -155,11 +159,9 @@ void RemoteScreen::startStream()
 
 void RemoteScreen::UdpDataAvailable()
 {
-    uint8_t data[16368];
-    qint64 r = stream_socket.read((char*)data, sizeof(data));
-
-    if (r>0) {
-        UdpProcess(data, r);
+     while (stream_socket.hasPendingDatagrams()) {
+        QNetworkDatagram datagram = stream_socket.receiveDatagram();
+        UdpProcess(datagram);
     }
 }
 
@@ -167,13 +169,26 @@ void RemoteScreen::resetReceiverState()
 {
 }
 
+void RemoteScreen::UdpProcess(QNetworkDatagram&datagram)
+{
+    //uint8_t data[16368];
+    QByteArray d;
+    d = datagram.data();
+    if (d.size()>0) {
+        UdpProcess((const uint8_t*)d.constData(), d.size());
+    }
+};
+
+
 void RemoteScreen::UdpProcess(const uint8_t *data, qint64 len)
 {
+    static_assert(sizeof(struct frame)==2+MAX_FRAME_PAYLOAD);
     if (len<2)
         return;
 
     if (state != STATE_STREAM)
         return;
+
 
     unsigned payloadlen = len - 2;
     //qDebug()<<"Dgram";
@@ -195,6 +210,9 @@ void RemoteScreen::UdpProcess(const uint8_t *data, qint64 len)
         isconnected = true;
 
     }
+    timer.stop();
+    timer.start(10000);
+
 }
 
 /* Colors 1/4 of maximum value, so we can add them */

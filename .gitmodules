@@ -1,6 +1,6 @@
 [submodule "QtSpecem"]
 	path = QtSpecem
-	url = git@github.com:alvieboy/QtSpecem.git
+	url = https://github.com/alvieboy/QtSpecem.git
 	branch = interfacez
 [submodule "QtZeroConf"]
 	path = QtZeroConf

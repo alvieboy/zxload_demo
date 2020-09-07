@@ -49,7 +49,7 @@ protected:
     void enterState(enum state st);
     void resetReceiverState();
     void UdpProcess(const uint8_t *data, qint64 len);
-
+    void UdpProcess(QNetworkDatagram&d);
 signals:
     void connectionDetected();
     void connectionLost();

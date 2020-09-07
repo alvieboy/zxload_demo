@@ -1,6 +1,7 @@
 #include "DemoWidget.h"
 #include "ImageWidget.h"
 #include "SpectrumWidget.h"
+#include "DemoEntry.h"
 
 #define BORDER_HORIZONTAL 32
 #define BORDER_VERTICAL 32
@@ -75,6 +76,7 @@ void DemoWidget::stop()
         entry.entry->deactivate();
     }
     spectrumWidget->stopEmul();
+    timer.stop();
     demoindex = -1;
 }
 
@@ -126,19 +128,4 @@ void DemoWidget::selectSpectrum()
     setCurrentIndex(1);
 }
 
-void SpectrumDemoEntry::deactivate()
-{
-    w->spectrum()->stopEmul();
-}
 
-void ImageDisplayDemoEntry::activate(ImageWidget*w)
-{
-    qDebug()<<"Loading "<<file;
-    w->load(file);
-}
-
-void SpectrumSnaDemoEntry::activate(SpectrumWidget*w)
-{
-    w->loadSNA(file);
-    w->resumeEmul();
-}

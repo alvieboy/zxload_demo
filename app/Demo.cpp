@@ -4,6 +4,11 @@
 #include "RemoteScreen.h"
 #include "DemoWidget.h"
 #include "QtSpecem.h"
+#include "Scene.h"
+#include "ImageDisplayDemoEntry.h"
+#include "SpectrumSnaDemoEntry.h"
+#include "SceneDemoEntry.h"
+#include "Scene1_Willy.h"
 
 Demo::Demo()
 {
@@ -61,6 +66,11 @@ void Demo::connectionLost()
 void Demo::loadDemos()
 {
     demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "spectrum1.png"), 5000 );
+
+    Scene *willy = new Scene1_Willy();
+    demow->addDemoEntry( new SceneDemoEntry(demow, willy), 80000 );
+
+
     demow->addDemoEntry( new SpectrumSnaDemoEntry(demow, "manic.sna"), 5000 );
 }
 
