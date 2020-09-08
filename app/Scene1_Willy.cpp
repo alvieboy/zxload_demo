@@ -66,6 +66,10 @@ void Scene1_Willy::start() {
 
 }
 
+void Scene1_Willy::stop() {
+    timer.stop();
+}
+
 void Scene1_Willy::willyStopped()
 {
     switch (localscene) {
@@ -130,8 +134,10 @@ void Scene1_Willy::timerExpired()
 }
 
 void Scene1_Willy::reset() {
-    willy.setPosition(160,32);
+    localscene = WILLY_MOVE_CENTER;
+    willy.reset(160,32);
 }
+
 void Scene1_Willy::tick() {
     willy.movetick();
 }

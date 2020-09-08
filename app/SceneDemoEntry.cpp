@@ -34,6 +34,7 @@ void SceneDemoEntry::activate()
 
 void SceneDemoEntry::deactivate()
 {
+    scene->stop();
     timer.stop();
 }
 

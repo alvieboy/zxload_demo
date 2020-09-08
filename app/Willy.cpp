@@ -9,6 +9,14 @@ Willy::Willy(int start_xpos, int start_ypos): QObject()
     movingbackwards=false;
 }
 
+void Willy::reset(int start_xpos, int start_ypos)
+{
+    xpos = target_xpos = start_xpos;
+    ypos = start_ypos;
+    movingbackwards=false;
+    direction = false;
+}
+
 void Willy::moveTo(int x, int y)
 {
     ypos = y;
