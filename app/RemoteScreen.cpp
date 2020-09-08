@@ -339,7 +339,7 @@ void RemoteScreen::renderScreen(const scr_t *scr, bool flashonly)
 void RemoteScreen::paintEvent(QPaintEvent *)
 {
     QPainter paint(this);
-    paint.drawImage(0, 0, targetimage);//.scaled(size(),Qt::KeepAspectRatio,Qt::FastTransformation));
+    paint.drawImage(0, 0, targetimage.rgbSwapped());//.scaled(size(),Qt::KeepAspectRatio,Qt::FastTransformation));
 
 
 }
