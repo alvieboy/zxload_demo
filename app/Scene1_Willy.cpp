@@ -53,15 +53,10 @@ void Scene1_Willy::drawTo(ScreenDrawer*drawer) {
     }
     willy.drawTo(drawer);
 }
+
 void Scene1_Willy::start() {
     localscene = WILLY_MOVE_CENTER;
-
-    QObject::connect(&willy, SIGNAL(movementDone()),
-                     this, SLOT(willyStopped()));
-
-    QObject::connect(&timer, SIGNAL(timeout()),
-                     this, SLOT(timerExpired()));
-
+    willy.reset();
     willy.moveTo(64,WILLY_VPOS);
 
 }
@@ -157,5 +152,11 @@ Scene1_Willy::Scene1_Willy()
         delete (maker_bottom);
         maker_bottom = NULL;
     }
+
+    QObject::connect(&willy, SIGNAL(movementDone()),
+                     this, SLOT(willyStopped()));
+
+    QObject::connect(&timer, SIGNAL(timeout()),
+                     this, SLOT(timerExpired()));
 
 }
