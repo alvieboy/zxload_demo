@@ -14,6 +14,8 @@ Demo::Demo()
 {
     QMainWindow *mainw = new EmulatorWindow();
 
+    mainw->setWindowState(Qt::WindowFullScreen);
+
     stack = new QStackedWidget();
 
     rs = new RemoteScreen();
