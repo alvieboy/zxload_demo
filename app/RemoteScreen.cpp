@@ -67,6 +67,7 @@ void RemoteScreen::enterState(enum RemoteScreen::state st)
     switch(state) {
     case STATE_SERVICE_DISCOVERY:
         qDebug()<<"Starting service discovery";
+        zeroconf.stopBrowser();
         zeroconf.startBrowser("_zxictrl._tcp");
         //zeroconf.startBrowser("_zxictrl._tcp");
         timer.start(30000);
