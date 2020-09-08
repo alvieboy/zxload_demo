@@ -10,9 +10,10 @@ ImageWidget::ImageWidget(QWidget *parent): QWidget(parent) {
 void ImageWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    QImage temp(image);
     painter.drawImage(0, 0, image.scaled(size(),
                                          Qt::KeepAspectRatio,
-                                         Qt::FastTransformation));
+                                         Qt::FastTransformation).rgbSwapped());
 
 }
 

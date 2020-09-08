@@ -4,7 +4,7 @@
 #include "ImageWidget.h"
 #include <QDebug>
 
-#define FRAMEDELAY 41
+#define FRAMEDELAY 60
 //#define FRAMEDELAY 1
 
 
@@ -28,6 +28,7 @@ void SceneDemoEntry::activate()
 
     scene->reset();
     scene->start();
+    timer.stop();
     timer.start(FRAMEDELAY);
 }
 
