@@ -67,12 +67,66 @@ void Demo::connectionLost()
 
 void Demo::loadDemos()
 {
-    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "spectrum1.png"), 5000 );
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "spectrum.png"), 4000 );
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "cantanhede1.png"), 4000 );
 
     Scene *willy = new Scene1_Willy();
-    demow->addDemoEntry( new SceneDemoEntry(demow, willy), 80000 );
+    demow->addDemoEntry( new SceneDemoEntry(demow, willy), 40000 );
 
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "teaser1.png"), 6000 );
+    demow->addDemoEntry( new SpectrumSnaDemoEntry(demow, "manic.sna"), 30000 );
 
-    demow->addDemoEntry( new SpectrumSnaDemoEntry(demow, "manic.sna"), 5000 );
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "spectrum4.png"), 6000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "teaser2.png"), 6000 );
+
+    demow->addDemoEntry( new SpectrumSnaDemoEntry(demow, "backtoskool.sna"), 30000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "spectrum.png"), 4000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "teaser3.png"), 6000 );
+
+    demow->addDemoEntry( new SpectrumSnaDemoEntry(demow, "thegreatescape.sna"), 20000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "spectrum4.png"), 4000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "teaser4.png"), 6000 );
+
+    demow->addDemoEntry( new SpectrumSnaDemoEntry(demow, "chequeredflag.sna"), 20000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "spectrum.png"), 4000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "teaser2.png"), 6000 );
+
+    demow->addDemoEntry( new SpectrumSnaDemoEntry(demow, "madmix.sna"), 20000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "spectrum4.png"), 4000 );
+
+    demow->addDemoEntry( new ImageDisplayDemoEntry(demow, "teaser4.png"), 6000 );
+
+    demow->addDemoEntry( new SpectrumSnaDemoEntry(demow, "rocknroller.sna"), 20000 );
 }
 
+
+/*
+              ['root','spectrum.png', 4],
+             ['emul','loader.sna -load-immed intro.tap', 60, 4],
+             ['img','teaser1.png', 4, 6],
+             ['emul','manic.sna',30, 4],
+             ['root','spectrum4.png', 4],
+             ['img','teaser2.png', 6, 4],
+             ['emul','backtoskool.sna',30, 4],
+             ['root','spectrum.png', 4],
+             ['img','teaser3.png', 6, 4],
+             ['emul','thegreatescape.sna',20, 4],
+             ['root','spectrum4.png', 4],
+             ['img','teaser4.png', 6, 4],
+             ['emul','chequeredflag.sna',20, 4],
+             ['root','spectrum.png', 4],
+             ['img','teaser2.png', 6, 4],
+             ['emul','madmix.sna',20, 4],
+             ['root','spectrum4.png', 4],
+             ['img','teaser4.png', 6, 4],
+             ['emul','rocknroller.sna',100, 4],
+             ['root','spectrum.png', 4],
+ */
